@@ -25,6 +25,7 @@ def setup_db():
                         StatusName TEXT,
                         UniqueSkills TEXT,
                         TimeType TEXT,
-                        AllLocations TEXT)''')
+                        AllLocations TEXT,
+                        JobRemovedDate TEXT)''')
     conn.commit()
     conn.close()
