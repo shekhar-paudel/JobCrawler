@@ -26,6 +26,7 @@ def setup_db():
                         UniqueSkills TEXT,
                         TimeType TEXT,
                         AllLocations TEXT,
+                        JobAddedDate TEXT DEFAULT CURRENT_TIMESTAMP,
                         JobRemovedDate TEXT)''')
     conn.commit()
     conn.close()

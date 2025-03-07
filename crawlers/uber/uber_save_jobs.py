@@ -7,7 +7,7 @@ def uber_save_new_jobs(jobs):
     for job in jobs:
         cursor.execute("SELECT Id FROM UberJobs WHERE Id = ?", (job["id"],))
         if cursor.fetchone() is None:
-            cursor.execute("INSERT INTO UberJobs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            cursor.execute("INSERT INTO UberJobs (Id, Title, Description, Department, Type, ProgramAndPlatform, LocationCountry, LocationRegion, LocationCity, LocationCountryName, Featured, Level, CreationDate, UpdatedDate, Team, PortalId, IsPipeline, StatusId, StatusName, UniqueSkills, TimeType, AllLocations, JobAddedDate)  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                            (job["id"], job["title"], job.get("description", ""),
                             job.get("department", ""), job.get("type", ""), job.get("programAndPlatform", ""),
                             job["location"].get("country", ""), job["location"].get("region", ""), job["location"].get("city", ""),
@@ -16,8 +16,10 @@ def uber_save_new_jobs(jobs):
                             job.get("team", ""), job.get("portalID", ""), job.get("isPipeline", False),
                             job.get("statusID", ""), job.get("statusName", ""),
                             job.get("uniqueSkills", ""), job.get("timeType", ""),
-                            str(job.get("allLocations", ""))))
-            new_jobs.append(job["title"])
+                            str(job.get("allLocations", "")),
+                            datetime.now().strftime("%Y-%m-%d %H:%M:%S")                           
+                            ))
+            new_jobs.append(job)
     conn.commit()
     conn.close()
     return new_jobs

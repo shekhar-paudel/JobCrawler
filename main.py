@@ -17,7 +17,7 @@ def main():
                 new_jobs = uber_save_new_jobs(data["data"]["results"])
                 for job in new_jobs:
                     #add job and job location to message
-                    message = f"Uber Posted New Job: {job} in {job['location']['city']}, {job['location']['region']}, {job['location']['countryName']}"
+                    message = f"Uber Posted New Job: {job['title']} in {job['location']['city']}, {job['location']['region']}, {job['location']['countryName']}"
                     #message = f"Uber Posted New Job: {job}"
                     print(message)
                     logger.info("Sending Telegram Message...")
