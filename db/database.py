@@ -29,4 +29,27 @@ def setup_db():
                         JobAddedDate TEXT DEFAULT CURRENT_TIMESTAMP,
                         JobRemovedDate TEXT)''')
     conn.commit()
+
+    cursor = conn.cursor()
+    cursor.execute('''CREATE TABLE IF NOT EXISTS DeepgramJobs (
+                        Id text PRIMARY KEY,
+                        Title TEXT,
+                        DepartmentName TEXT,
+                        LocationName TEXT,
+                        WorkplaceType TEXT,
+                        EmploymentType TEXT,
+                        isListed BOOLEAN,
+                        isConfidential BOOLEAN,
+                        TeamNames TEXT,
+                        SecondaryLocationNames TEXT,
+                        CompensationTierSummary TEXT,
+                        CompensationTiers TEXT,
+                        ApplicationDeadline TEXT,
+                        CompensationTierGuideUrl TEXT,
+                        ScrapeableCompensationSalarySummary TEXT,
+                        DescriptionHtml TEXT,
+                        JobAddedDate TEXT DEFAULT CURRENT_TIMESTAMP,
+                        JobRemovedDate TEXT)''')
+
+                       
     conn.close()
